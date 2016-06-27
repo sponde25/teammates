@@ -274,7 +274,8 @@ task eslint(type: Exec) {
     def command = ["eslint"]
     def jsDirs = ["src/main/webapp/js", "src/test/javascript"]
     def configFile = ["-c", "static-analysis/teammates-eslint.yml"]
-    commandLine = (isWindows ? ["cmd", "/c"] : []) + command + jsDirs + configFile
+    def ignore = ["--ignore-pattern", "lib/"]
+    commandLine = (isWindows ? ["cmd", "/c"] : []) + command + jsDirs + configFile + ignore
 }
 
 checkstyle {
@@ -285,7 +286,7 @@ checkstyle {
 pmd {
     toolVersion = "5.4.1"
     consoleOutput = true
-    ruleSetFiles = files("static-analysis/teammates-pmd.xml")
+    ruleSetFiles = files("static-analysis/teammates-pmd.xml", "static-analysis/teammates-pmdMain.xml")
     ruleSets = []
 }
 
