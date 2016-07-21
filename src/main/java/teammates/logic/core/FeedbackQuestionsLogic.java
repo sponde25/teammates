@@ -663,6 +663,7 @@ public class FeedbackQuestionsLogic {
         }
         
         fqDb.deleteEntity(questionToDelete);
+        questionsInSession.remove(questionToDelete);
         
         if (questionToDelete.questionNumber < questionsInSession.size()) {
             shiftQuestionNumbersDown(questionToDelete.questionNumber, questionsInSession);
